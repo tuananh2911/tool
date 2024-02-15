@@ -1,0 +1,87 @@
+<!-- src/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lạc Hồng MMO</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mui/material@5.10.0/dist/css/material.min.css"
+          integrity="sha512-riW7DXFZXa9RSV7QcgNk/LihvV4RDKB7QNIBj/JZ2tZRsVg1/A7eBUkHTbPGHp76KZQ/6rCpwl63ZDjGPErgVQ=="
+          crossorigin="anonymous">
+    <!-- Add Ant Design CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Add Ant Design JS -->
+    <script src="https://cdn.jsdelivr.net/npm/antd/dist/antd.min.js"></script>
+
+</head>
+<body class="h-screen bg-gradient-to-br from-blue-500 to-green-500">
+<div class=" mx-auto mt-8 grid grid-cols-3 gap-8  w-11/12">
+    <!-- Comment Section -->
+    <div class="col-span-1 bg-white p-4 rounded shadow-md">
+        <label for="commentInput" class="block mb-2 text-gray-700">Comment:</label>
+        <div class="flex items-center mb-4">
+            <input type="text" id="commentInput" placeholder="Enter your comment" class="w-full p-2 border rounded">
+            <input type="file" id="imageInput" accept="image/*" class="hidden">
+            <div id="uploadImageButton" class="ml-2 px-4 py-2 w-60 bg-green-500 text-white rounded">
+                <i class="fas fa-upload"></i> Image
+            </div>
+        </div>
+        <div class="w-96 overflow-x-scroll">
+            <iframe loading="lazy" class="comment-iframe" src="https://atpsoftware.vn/icon-fb/" width="900"
+                    height="400"></iframe>
+        </div>
+        <div id="uploadedImage" class="mb-4"></div>
+        <div id="randomIconButton" class="px-4 py-2 text-white rounded">
+        </div>
+    </div>
+
+    <!-- Add Account Section -->
+    <div class="col-span-1 bg-white p-4 rounded shadow-md">
+        <label for="usernameInput" class="block mb-2 text-gray-700">Username:</label>
+        <input type="text" id="usernameInput" class="w-full p-2 border rounded">
+        <label for="passwordInput" class="block mt-4 mb-2 text-gray-700">Password:</label>
+        <input type="text" id="passwordInput" class="w-full p-2 border rounded">
+        <button id="addAccountButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Add Account</button>
+    </div>
+
+    <!-- Display Account Section -->
+    <div class="col-span-1 bg-white p-4 rounded shadow-md">
+        <div id="accountList">
+            <!-- Account list will be displayed here -->
+        </div>
+        <div id="pagination" class="my-4"></div>
+        <button id="deleteAccountButton" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Delete</button>
+    </div>
+
+    <!-- Add Group Section -->
+    <div class="col-span-1 mt-8 bg-white p-4 rounded shadow-md">
+        <label for="groupLinkInput" class="block mb-2 text-gray-700">Link Group:</label>
+        <input type="text" id="groupLinkInput" placeholder="Enter group link" class="w-full p-2 border rounded">
+        <button id="addGroupButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onclick={handleNameGroup()}>
+            Add
+            Group
+        </button>
+    </div>
+
+    <!-- Display Groups Section -->
+    <div class="col-span-2 mt-8 bg-white p-4 rounded shadow-md">
+        <div id="groupList">
+            <!-- Group list will be displayed here -->
+        </div>
+        <div id="groupsPagination" class="mt-4 w-fit h-4"></div>
+        <button id="deleteGroupButton" class="mt-4 px-4 py-2 bg-red-500 text-white rounded">Delete</button>
+    </div>
+</div>
+
+<button id="startButton"
+        class="mt-4 mx-auto px-6 py-2 bg-blue-500 w-1/2 justify-center text-white rounded flex align-middle">Comment
+</button>
+
+<script src="./renderer.js"></script>
+</body>
+</html>
