@@ -43,18 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 function addGroup(linkGroup,nameGroup){
     const groupList = document.getElementById('groupList');
-        const groupItem = document.createElement('div');
-        groupItem.classList.add('flex', 'items-center', 'justify-between', 'mb-2', 'p-2', 'border', 'rounded', 'bg-white');
-        groupItem.innerHTML = `
+    const groupItem = document.createElement('div');
+    groupItem.classList.add('flex', 'items-center', 'justify-between', 'mb-2', 'p-2', 'border', 'rounded', 'bg-white');
+    groupItem.innerHTML = `
                 <label class="flex items-center">
                     <input type="checkbox" class="mr-2 group-checkbox">
                     ${nameGroup}
                 </label>
             `;
-        groupList.appendChild(groupItem);
-        saveGroupsToLocalStorage(linkGroup, nameGroup);
-        // Clear input field
-        document.getElementById('groupLinkInput').value = '';
+    groupList.appendChild(groupItem);
+    saveGroupsToLocalStorage(linkGroup, nameGroup);
+    // Clear input field
+    document.getElementById('groupLinkInput').value = '';
 }
 function saveAccountToLocalStorage(username, password) {
     // Retrieve existing accounts from localStorage
@@ -81,7 +81,7 @@ function handleNameGroup() {
     try {
         const func = async () => {
             const linkGroup = document.getElementById("groupLinkInput").value
-            const response = await window.versions.getNameGroup(linkGroup)
+            const response = await window.versions.getNameGroup(linkGroup,'iotsystem2911@gmail.com','Tu@n@nh2911')
             addGroup(linkGroup,response)
         }
 

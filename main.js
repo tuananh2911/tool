@@ -72,7 +72,7 @@ async function newGrabBrowser({urls, username, password, comment}) {
     const browser = await puppeteer.launch({
         headless: false,
         args: ["--disable-notifications"],
-        executablePath: executablePath(),
+        executablePath:executablePath(),
     });
     const page = await browser.newPage();
     await page.setViewport({
