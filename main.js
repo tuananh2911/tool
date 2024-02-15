@@ -36,10 +36,10 @@ function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function getName({url}) {
+async function getName({url, username, password}) {
     const browser = await puppeteer.launch({
         headless: true,
-        args: ["--no-sandbox,--disable-notifications"],
+        args: ["--disable-notifications"],
         executablePath: executablePath()
     });
     const page = await browser.newPage();
@@ -48,13 +48,21 @@ async function getName({url}) {
         height: 1080,
         deviceScaleFactor: 1,
     });
-    await page.goto(url);
-    await page.waitForXPath(
-        "/html/body/div[1]/div/div[1]/div/div[5]/div/div/div[1]/div/div[2]/div/div/div/div[1]/div"
+    await page.goto("https://www.facebook.com");
+    setTimeout(() => {
+    }, 1000);
+    await page.type("#email", username);
+    setTimeout(() => {
+    }, 1000);
+    await page.type("#pass", password);
+    const elements = await page.$x(
+        "/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/button"
     );
-    const elements = await page.$x('/html/body/div[1]/div/div[1]/div/div[5]/div/div/div[1]/div/div[2]/div/div/div/div[1]/div')
     await elements[0].click();
-    const [getXpath] = await page.$x('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div[1]/h1/span/a')
+    await page.waitForNavigation();
+    await page.goto(url);
+    await page.waitForTimeout(1000);
+    const [getXpath] = await page.$x('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[1]/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div[1]/h1/span/a')
     const getMsg = await page.evaluate(name => name.innerText, getXpath);
     await browser.close();
     return getMsg
@@ -64,8 +72,7 @@ async function newGrabBrowser({urls, username, password, comment}) {
     const browser = await puppeteer.launch({
         headless: false,
         args: ["--disable-notifications"],
-        executablePath:
-            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        executablePath: executablePath(),
     });
     const page = await browser.newPage();
     await page.setViewport({
