@@ -30,7 +30,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "emoji-data": "^0.2.0",
     "node-fetch": "^2.6.1",
-    "puppeteer": "^21.7.0",
+    "puppeteer": "^22.1.0",
     "puppeteer-autoscroll-down": "^2.0.0",
     "puppeteer-core": "^21.7.0",
     "puppeteer-in-electron": "^3.0.5"
